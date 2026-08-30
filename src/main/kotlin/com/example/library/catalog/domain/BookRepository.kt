@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface BookRepository : CrudRepository<Book, BookId> {
 
-    fun existsByIsbnValue(value: String): Boolean
+    fun existsByIsbn(isbn: Isbn): Boolean
 }

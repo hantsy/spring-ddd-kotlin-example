@@ -16,6 +16,7 @@ import com.example.library.lending.domain.OverdueFee
 import com.example.library.lending.domain.UserId
 import org.assertj.core.api.Assertions.assertThat
 import org.awaitility.Awaitility.await
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,7 +26,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.concurrent.atomic.AtomicReference
 
-@SpringBootTest
+@SpringBootTest(properties = ["spring.datasource.url=jdbc:h2:mem:library-it;DB_CLOSE_DELAY=-1"])
 class LibraryIntegrationTest {
 
     @Autowired
@@ -43,7 +44,12 @@ class LibraryIntegrationTest {
     @Autowired
     private lateinit var returnBookUseCase: ReturnBookUseCase
 
-    private fun <T> Iterable<T>.toList(): List<T> = this.toList()
+    @BeforeEach
+    fun cleanUp() {
+        loanRepository.deleteAll()
+        copyRepository.deleteAll()
+        bookRepository.deleteAll()
+    }
 
     @Test
     fun testLibraryCrud() {

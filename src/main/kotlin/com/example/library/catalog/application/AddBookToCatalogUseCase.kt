@@ -13,7 +13,7 @@ class AddBookToCatalogUseCase(
     private val bookRepository: BookRepository,
 ) {
     fun execute(isbn: Isbn) {
-        if (bookRepository.existsByIsbnValue(isbn.value)) {
+        if (bookRepository.existsByIsbn(isbn)) {
             throw BookAlreadyExistsException(isbn)
         }
         val result = bookSearchService.search(isbn)

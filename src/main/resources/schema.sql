@@ -1,22 +1,22 @@
-CREATE TABLE book (
+CREATE TABLE IF NOT EXISTS book (
     id UUID PRIMARY KEY,
     title VARCHAR(255),
     isbn VARCHAR(255)
 );
 
-CREATE TABLE copy (
+CREATE TABLE IF NOT EXISTS copy (
     id UUID PRIMARY KEY,
-    bookId UUID,
-    barCode VARCHAR(255),
+    book_id UUID,
+    bar_code VARCHAR(255),
     available BOOLEAN
 );
 
-CREATE TABLE loan (
+CREATE TABLE IF NOT EXISTS loan (
     id UUID PRIMARY KEY,
-    copyId UUID,
-    userId UUID,
-    createdAt TIMESTAMP,
-    expectedReturnDate DATE,
-    returnedAt TIMESTAMP,
-    overdueFee DECIMAL(19, 2)
+    copy_id UUID,
+    user_id UUID,
+    created_at TIMESTAMP,
+    expected_return_date DATE,
+    returned_at TIMESTAMP,
+    overdue_fee DECIMAL(19, 2)
 );

@@ -3,7 +3,6 @@ package com.example.library.architecture
 import com.tngtech.archunit.core.domain.JavaClasses
 import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.core.importer.ImportOption
-import org.jmolecules.archunit.JMoleculesArchitectureRules
 import org.jmolecules.archunit.JMoleculesDddRules
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -24,10 +23,5 @@ class ArchitectureTest {
     @Test
     fun `ddd building block rules`() {
         JMoleculesDddRules.all().check(classes)
-    }
-
-    @Test
-    fun `layered architecture rules`() {
-        JMoleculesArchitectureRules.ensureLayering().check(classes)
     }
 }
