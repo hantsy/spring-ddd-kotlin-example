@@ -1,6 +1,6 @@
 package com.example.library.lending.domain
 
-import org.jmolecules.ddd.annotation.ValueObject
+import org.jmolecules.ddd.types.ValueObject
 import java.util.UUID
 
 /**
@@ -8,8 +8,7 @@ import java.util.UUID
  * consumer of copy identities — it never generates its own, which is why there
  * is no factory for a random id.
  */
-@ValueObject
-data class CopyId(val value: UUID) {
+data class CopyId(val value: UUID) : ValueObject {
     companion object {
         fun of(id: UUID): CopyId = CopyId(id)
     }
