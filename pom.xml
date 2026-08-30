@@ -166,7 +166,7 @@
                     <dependency>
                         <groupId>org.jmolecules.integrations</groupId>
                         <artifactId>jmolecules-bytebuddy</artifactId>
-                        <version>0.33.0</version>
+                        <version>1.6.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
