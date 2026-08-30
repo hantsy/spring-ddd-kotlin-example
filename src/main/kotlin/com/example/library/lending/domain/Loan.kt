@@ -6,6 +6,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
+// or: @AggregateRoot class Loan(@field:Identity val id: LoanId, ...)
 class Loan(
     override val id: LoanId,
     val copyId: CopyId,

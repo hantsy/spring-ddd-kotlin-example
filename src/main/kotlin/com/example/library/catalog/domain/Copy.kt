@@ -3,6 +3,7 @@ package com.example.library.catalog.domain
 import org.jmolecules.ddd.types.AggregateRoot
 import org.jmolecules.ddd.types.Association
 
+// or: @AggregateRoot class Copy(@field:Identity val id: CopyId, ...)
 class Copy(
     override val id: CopyId,
     val bookId: Association<Book, BookId>,
