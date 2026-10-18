@@ -16,18 +16,23 @@ class Loan(
     var returnedAt: LocalDateTime?,
     var overdueFee: BigDecimal?,
 ) : AggregateRoot<Loan, LoanId> {
-    constructor(copyId: CopyId, userId: UserId) :
-        this(LoanId.newInstance(), copyId, userId, LocalDateTime.now(), LocalDate.now().plusDays(30), null, null)
+
+    constructor(copyId: CopyId, userId: UserId, createdAt: LocalDateTime) :
+        this(LoanId.newInstance(), copyId, userId, createdAt, createdAt.toLocalDate().plusDays(LOAN_TERM_DAYS), null, null)
 
     constructor(copyId: CopyId, userId: UserId, createdAt: LocalDateTime, expectedReturnDate: LocalDate) :
         this(LoanId.newInstance(), copyId, userId, createdAt, expectedReturnDate, null, null)
 
-    fun returned() {
-        returnedAt = LocalDateTime.now()
-        if (returnedAt!!.isAfter(expectedReturnDate.atStartOfDay())) {
-            val daysOverdue = ChronoUnit.DAYS.between(expectedReturnDate, returnedAt!!.toLocalDate())
+    fun returned(returnedAt: LocalDateTime) {
+        this.returnedAt = returnedAt
+        if (returnedAt.isAfter(expectedReturnDate.atStartOfDay())) {
+            val daysOverdue = ChronoUnit.DAYS.between(expectedReturnDate, returnedAt.toLocalDate())
             overdueFee = OverdueFee.forDays(daysOverdue)?.amount
             // In production, fire an OverdueFeeCalculated domain event here
         }
+    }
+
+    companion object {
+        private const val LOAN_TERM_DAYS: Long = 30L
     }
 }

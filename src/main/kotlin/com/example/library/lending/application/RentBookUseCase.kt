@@ -1,15 +1,15 @@
 package com.example.library.lending.application
 
-import com.example.library.common.UseCase
+import com.example.library.lending.domain.CopyAvailabilityValidator
 import com.example.library.lending.domain.CopyId
 import com.example.library.lending.domain.Loan
 import com.example.library.lending.domain.LoanCreated
 import com.example.library.lending.domain.LoanRepository
 import com.example.library.lending.domain.UserId
+import com.example.library.shared.UseCase
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher
 import java.time.Clock
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @UseCase
@@ -25,7 +25,7 @@ class RentBookUseCase(
     fun execute(copyId: CopyId, userId: UserId) {
         copyAvailabilityValidator.checkAvailable(copyId)
         val now = LocalDateTime.now(clock)
-        loanRepository.save(Loan(copyId, userId, now, LocalDate.now(clock).plusDays(30)))
+        loanRepository.save(Loan(copyId, userId, now))
 
         log.info("firing LoanCreated with copy id = {}", copyId)
         events.publishEvent(LoanCreated(copyId))

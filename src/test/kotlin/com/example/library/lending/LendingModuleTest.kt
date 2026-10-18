@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.modulith.test.ApplicationModuleTest
 import org.springframework.modulith.test.Scenario
+import java.time.LocalDateTime
 import java.util.UUID
 
 @ApplicationModuleTest
@@ -41,7 +42,7 @@ class LendingModuleTest {
     fun returnBookPublishesLoanClosed(scenario: Scenario) {
         val copyId = CopyId.of(UUID.randomUUID())
         val userId = UserId.newInstance()
-        val loan = loanRepository.save(Loan(copyId, userId))
+        val loan = loanRepository.save(Loan(copyId, userId, LocalDateTime.now()))
 
         scenario.stimulate(Runnable { returnBookUseCase.execute(loan.id) })
             .andWaitForEventOfType(LoanClosed::class.java)

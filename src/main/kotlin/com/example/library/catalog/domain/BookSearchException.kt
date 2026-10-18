@@ -1,6 +1,6 @@
 package com.example.library.catalog.domain
 
-import com.example.library.common.DomainException
+import com.example.library.shared.DomainException
 
 /**
  * Thrown when an external book search fails for reasons other than "not found",

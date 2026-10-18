@@ -1,4 +1,4 @@
-package com.example.library.common
+package com.example.library.shared
 
 /**
  * Marker annotation that triggers method-call logging via [LoggedInterceptor].

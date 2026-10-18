@@ -1,4 +1,4 @@
-package com.example.library.common
+package com.example.library.shared
 
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
@@ -16,7 +16,7 @@ class LoggedInterceptor {
 
     private val log = LoggerFactory.getLogger(LoggedInterceptor::class.java)
 
-    @Around("@within(com.example.library.common.UseCase)")
+    @Around("@within(com.example.library.shared.UseCase)")
     fun logMethodCall(joinPoint: ProceedingJoinPoint): Any? {
         val methodName = joinPoint.signature.name
         val params = joinPoint.args

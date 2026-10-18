@@ -1,8 +1,8 @@
-package com.example.library.common
+package com.example.library.shared
 
 import org.springframework.modulith.ApplicationModule
 import org.springframework.modulith.PackageInfo
 
 @PackageInfo
 @ApplicationModule(allowedDependencies = [])
-class CommonPackageInfo
+class SharedPackageInfo
