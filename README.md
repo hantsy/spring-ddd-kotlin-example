@@ -8,6 +8,8 @@ It is the Kotlin port of [spring-ddd-example](https://github.com/hantsy/spring-d
 - **Spring Data JDBC** instead of JPA, with the domain kept **pure jMolecules** — the **jMolecules ByteBuddy plugin** generates the JDBC mapping (`@Table`, `@Id`, …) at compile time.
 - **jMolecules** DDD contracts and **JDBC-backed event publication** (`spring-modulith-starter-jdbc`).
 
+[Applying DDD with Spring Boot and Kotlin](docs/applying-ddd-with-spring-kotlin.md).
+
 ## Architecture
 
 Two bounded contexts (`catalog`, `lending`) plus a shared kernel (`common`):
